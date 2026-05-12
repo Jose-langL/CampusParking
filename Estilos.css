@@ -96,3 +96,78 @@ body {
     font-style: normal;
     color: #007bff;
 }
+
+/*************NavBar**************/
+.contenidomain {
+    display: flex;
+    min-height: 100vh;
+    margin-right: 5px;
+    gap: 25px;
+    height: 100%;
+}
+
+.navbar {
+    background-color: #0e5c5c;
+    display: flex;
+    justify-content: space-between;
+    width: 230px;
+    min-height: 100vh;
+    height: 100%;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    font-size: 1.19rem;
+}
+
+.navbar li {
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.80);
+    cursor: pointer;
+    list-style: none;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.navbar li:hover,
+.navbar-nav li.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.navbar ul {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.navbar li:hover ul {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.BtnCerrrar {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 12px;
+}
+
+.BtnCerrrar {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 0.95rem;
+    cursor: pointer;
+    text-align: left;
+    letter-spacing: 0.01em;
+}
+
+.BtnCerrrar:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
