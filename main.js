@@ -18,4 +18,24 @@ const validaUsuario = () => {
         alert("Usuario y contraseña incorrectos");
     }
 }
-//
+
+//Funcion para extraer datos del formulario 
+const formulariodatos = document.getElementById("FormularioIngreso");
+
+formulariodatos.addEventListener("submit", validarformulario);
+
+function validarformulario(e){
+    e.preventDefault();
+    const Vehiculos = JSON.parse(localStorage.getItem("Vehiculos")) || [];
+
+    const Placa = document.getElementById("Placa").value;
+    const TipoVehiculo = document.getElementById("TipoVehiculo").value;
+    const FechaIngreso = document.getElementById("fechaingreso").value;
+    const Slot = document.getElementById("Espacio").value;
+
+    vehiculo = {Placa, TipoVehiculo, FechaIngreso, Slot};
+
+    Vehiculos.push(vehiculo);
+    localStorage.setItem("Vehiculos", JSON.stringify(Vehiculos));
+    formulariodatos.reset();
+}

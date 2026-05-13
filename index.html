@@ -48,65 +48,72 @@
 
                 <!-- formulario de ingreso de vehiculo -->
                 <div class="contendorblanco">
-                    <h1>Ingreso de Vehiculo</h1>
-                    <div class="formulario">
-                        <label>Placa:</label>
-                        <input type="text" />
-                    </div>
-                    <div class="formulario">
-                        <label>Propietario:</label>
-                        <input type="text" />
-                    </div>
-                    <div class="formulario">
-                        <label>Teléfono:</label>
-                        <input type="text" />
-                    </div>
-                    <div class="formulario">
-                        <label>Tipo de Vehículo:</label>
-                        <select>
-                            <option>Carro</option>
-                            <option>Moto</option>
-                            <option>Bus</option>
-                            <option>Camión</option>
-                        </select>
-                    </div>
-                    <div class="formulario">
-                        <label>Fecha de ingreso:</label>
-                        <input type="datetime-local" />
-                    </div>
+                    <form action="" id="FormularioIngreso">
+                        <h1>Ingreso de Vehiculo</h1>
 
-                      <div class="formulario">
-                                <label>Espacio:</label>
-                                <select>
-                                    <option>Zona A</option>
-                                    <option>Zona B</option>
-                                    <option>Zona C</option>
-                                    <option>Zona D</option>
-                                </select>
-                    </div>
+                        <div class="formulario">
+                            <label>Placa:</label>
+                            <input type="text" id="Placa" maxlength="7" required />
+                        </div>
 
-                     <div class="formulario">
-                                <label>Tarifa Hora:</label>
-                                <select>
-                                    <option>Q10</option>
-                                    <option>Q50</option>
-                                    <option>Q20</option>
-                                    <option>Q60</option>
-                                    <option>Q25</option>
-                                    <option>Q75</option>
-                                </select>
-                    </div>
+                        <div class="formulario">
+                            <label>Propietario:</label>
+                            <input type="text" required/>
+                        </div>
 
-                    <div class="formulario">
-                                <label>Cobro</label>
-                                <input type="text">
-                    </div>
+                        <div class="formulario">
+                            <label>Teléfono:</label>
+                            <input type="text" maxlength="8" required/>
+                        </div>
 
-                    <button class="btn-registrar">Registrar Vehículo</button>
+                        <div class="formulario">
+                            <label>Tipo de Vehículo:</label>
+                            <select>
+                                <option>Carro</option>
+                                <option>Moto</option>
+                                <option>Bus</option>
+                                <option>Camión</option>
+                            </select>
+                        </div>
+
+                        <div class="formulario">
+                            <label>Fecha de ingreso:</label>
+                            <input type="datetime-local" id="fechaingreso"  required/>
+                        </div>
+
+                        <div class="formulario">
+                            <label>Espacio:</label>
+                            <select>
+                                <option>Zona A</option>
+                                <option>Zona B</option>
+                                <option>Zona C</option>
+                                <option>Zona D</option>
+                            </select>
+                        </div>
+
+                        <div class="formulario">
+                            <label>Tarifa Hora:</label>
+                            <select>
+                                <option>Q10</option>
+                                <option>Q50</option>
+                                <option>Q20</option>
+                                <option>Q60</option>
+                                <option>Q25</option>
+                                <option>Q75</option>
+                            </select>
+                        </div>
+
+                        <div class="formulario">
+                            <label>Cobro</label>
+                            <input type="text">
+                        </div>
+
+                        <button class="btn-registrar"> Registrar Vehículo</button>
+                    </form>
                 </div>
 
                 <!-- Informacion de tarifas -->
-                <div class="contendorblanco"  id="contendortarifa">
+                <div class="contendorblanco" id="contendortarifa">
                     <h1>Horarios y Tarifass</h1>
                     <table>
                         <thead>
@@ -134,40 +141,40 @@
                                 <td>Q25</td>
                                 <td>Q75</td>
                             </tr>
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- tabla de vehiculos registrado y salida de vehiculo --> 
+            <!-- tabla de vehiculos registrado y salida de vehiculo -->
             <div class="arriba">
                 <div class="contendorblanco" id="contenedor2">
-                    <h1>Salida de Vehiculo</h1>
+                    <h1>Entrada vehiculos</h1>
                     <table>
                         <thead>
                             <tr>
                                 <th>Placa</th>
-                                <th>Nombre</th>
-                                <th>Ubicación</th>
+                                <th>Tipo de Vehiculo</th>
+                                <th>Fecha</th>
                                 <th>Hora Entrada</th>
-                                <th>Hora Salida</th>
-                                <th>Cobro</th>
+                                <th>Slot</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>ABC-123</td>
-                                <td>Juan Pérez</td>
-                                <td>Nivel 1 - A2</td>
+                                <td>Moto</td>
+                                <td>15/08/2026</td>
                                 <td>08:00 AM</td>
-                                <td>05:00 PM</td>
-                                <td>Q50</td>
+                                <td>Zona A-1</td>
                             </tr>
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </main>
+    <script src="./main.js"></script>
 </body>
+
 </html>
