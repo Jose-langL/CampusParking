@@ -278,3 +278,36 @@ tr:hover {
     width: auto;
     height: 300px;
 }
+
+/*******Pantalla 2*******/
+#informacionespacio{
+    width: 150px;
+    height: 150px;
+}
+
+#EspaciosContenedor{
+    width: 80%;
+    height: auto;
+}
+
+.columnas{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    border: 2px solid #007bff;
+    width: auto;
+    height: auto;
+    gap: 15px;
+}
+.espacios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid green;
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+}
+
