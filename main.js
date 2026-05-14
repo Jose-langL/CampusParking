@@ -19,23 +19,51 @@ const validaUsuario = () => {
     }
 }
 
-//Funcion para extraer datos del formulario 
+//Funcion extraer datos formulario y localhost
 const formulariodatos = document.getElementById("FormularioIngreso");
-
 formulariodatos.addEventListener("submit", validarformulario);
 
+//Variable Global
+const Vehiculos = JSON.parse(localStorage.getItem("Vehiculos")) || [];
 function validarformulario(e){
     e.preventDefault();
-    const Vehiculos = JSON.parse(localStorage.getItem("Vehiculos")) || [];
-
+    
     const Placa = document.getElementById("Placa").value;
     const TipoVehiculo = document.getElementById("TipoVehiculo").value;
     const FechaIngreso = document.getElementById("fechaingreso").value;
     const Slot = document.getElementById("Espacio").value;
 
-    vehiculo = {Placa, TipoVehiculo, FechaIngreso, Slot};
+    nuevovehiculo = {Placa, TipoVehiculo, FechaIngreso, Slot};
 
-    Vehiculos.push(vehiculo);
+    Vehiculos.push(nuevovehiculo);
     localStorage.setItem("Vehiculos", JSON.stringify(Vehiculos));
     formulariodatos.reset();
 }
+
+//Funcion para poner datos de localhost en tabla
+const tabladatos = document.getElementById("tabla2")
+
+function datostabla(){
+   const listaVehiculos = Vehiculos
+   tabladatos.innerHTML = "";
+   listaVehiculos.forEach(datos => {
+    //Extraer datos de input fecha y hora
+      let fecha_hora = datos.FechaIngreso.split('T');
+      let fecha =  fecha_hora[0]
+      let hora = fecha_hora[1]
+
+       tabladatos.innerHTML +=`
+       <tr>
+            <td>${datos.Placa}</td>
+            <td>${datos.TipoVehiculo}</td>
+            <td>${fecha}</td>
+            <td>${hora}</td>
+            <td>${datos.Slot}</td>
+       </tr>
+       `
+   });
+   console.log(listaVehiculos)
+   
+}
+
+datostabla()
