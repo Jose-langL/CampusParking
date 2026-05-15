@@ -93,13 +93,13 @@
 
                         <div class="formulario">
                             <label>Tarifa Hora:</label>
-                            <select>
-                                <option>Q10</option>
-                                <option>Q50</option>
-                                <option>Q20</option>
-                                <option>Q60</option>
-                                <option>Q25</option>
-                                <option>Q75</option>
+                            <select id="TarifaHora">
+                                <option value="10">Q10</option>
+                                <option value="50">Q50</option>
+                                <option value="20">Q20</option>
+                                <option value="60">Q60</option>
+                                <option value="25">Q25</option>
+                                <option value="75">Q75</option>
                             </select>
                         </div>
 
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <!-- tabla de vehiculos registrado y salida de vehiculo -->
+            <!-- tabla de vehiculos registrados -->
             <div class="arriba">
                 <div class="contendorblanco" id="contenedor2">
                     <h1>Entrada vehiculos</h1>
@@ -163,6 +163,27 @@
                             </tr>
                         </thead>
                         <tbody id="tabla2">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla de vehiculos de Salida -->
+             <div class="arriba">
+                <div class="contendorblanco" id="contenedor2">
+                    <h1>Salida vehiculos</h1>
+                    <table id="tabla1">
+                        <thead>
+                            <tr>
+                                <th>Placa</th>
+                                <th>Tipo de Vehiculo</th>
+                                <th>Fecha</th>
+                                <th>Hora Salida</th>
+                                <th>Slot</th>
+                                <th>Pagar</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla3">
                         </tbody>
                     </table>
                 </div>

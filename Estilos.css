@@ -222,3 +222,31 @@ tr:hover { background: #f3f1f1; }
     text-align: center;
     background: #e8f5e9;
 }
+
+/********Botones de tabla (Eliminar, Modificar y Pagar)*********/
+.btneliminar {
+    padding: 8px 12px;
+    background: #ff0101c3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btnmodificar {
+    padding: 8px 12px;
+    background: #1a8c87;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.BtnPagar{
+    padding: 8px 12px;
+    background: #0bb508b7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
