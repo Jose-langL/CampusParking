@@ -35,6 +35,12 @@ const validaUsuario = () => {
         const FechaIngreso = document.getElementById("fechaingreso").value;
         const Slot = document.getElementById("Espacio").value;
 
+        const ocupado = Vehiculos.some(carro => Number(carro.Slot) === Number(Slot));
+        if (ocupado) {
+            alert("¡Error! Este espacio ya está ocupado. Elige otro.");
+            return;
+        }
+
         nuevovehiculo = { Placa, TipoVehiculo, FechaIngreso, Slot };
 
         Vehiculos.push(nuevovehiculo);
@@ -45,7 +51,7 @@ const validaUsuario = () => {
 
     //Funcion para poner datos de localhost en tabla
     const tablaentrada = document.getElementById("tabla2")
-     const tablasalida = document.getElementById("tabla3")
+    const tablasalida = document.getElementById("tabla3")
 
     function datostabla() {
         Vehiculos
@@ -65,21 +71,11 @@ const validaUsuario = () => {
                 <td>${datos.Slot}</td>
                 <td><button onclick="EliminarVehiculo(${indice})" class="btneliminar">Eliminar</button></td>
                 <td><button onclick="ModificarVehiculo(${indice})" class="btnmodificar">Modificar</button></td>
-            </tr>  `
-
-            tablasalida.innerHTML += `
-            <tr>
-                <td>${datos.Placa}</td>
-                <td>${datos.TipoVehiculo}</td>
-                <td>${fecha}</td>
-                <td>${hora}</td>
-                <td>${datos.Slot}</td>
                 <td><button onclick="pagarParqueo(${indice})" class="BtnPagar">Pagar</button></td>
-            </tr>
-            `
+            </tr>  `
+            
         });
     }
-
 
     //Funcion para eliminar datos de la tabla y localstorage
     function EliminarVehiculo(posicion) {
@@ -89,6 +85,7 @@ const validaUsuario = () => {
             Vehiculos.splice(posicion, 1);
             localStorage.setItem("Vehiculos", JSON.stringify(Vehiculos));
             datostabla();
+            espacios();
         }else{
             alert("El auto no se ha eliminado");
         }
@@ -115,21 +112,65 @@ const validaUsuario = () => {
 
 //Funcion para Pagar el parqueo
 function pagarParqueo(posicion){
+
     const hora = Vehiculos[posicion];
     const horaentrada = new Date(hora.FechaIngreso);
     const horasalida = new Date();
+    console.log(horasalida)
     const diferencia = horasalida - horaentrada;
-    const horasparqueo = Math.ceil(diferencia / (1000 * 60 * 60));
+    const horasparqueo = (diferencia / (1000 * 60 * 60));
     const Tarifa = Number(document.getElementById("TarifaHora").value);
     const Total = horasparqueo * Tarifa;
 
-    alert(`
-        VALE DE SALIDA
-        -----------------------
-        Horas a cobrar: ${horasparqueo}
-        Tarifa por hora: ${Tarifa}
-        Total a pagar: $${Total.toFixed(2)}
-    `);
+    const respuesta = confirm("Bienvenido al proceso de pago, ¿Desea continuar?");
+    if(respuesta == true){
+        alert("calculando el total a pagar...")
+        const fecha_hora = hora.FechaIngreso.split('T');
+        const hora_limpia_salida = horasalida.toLocaleTimeString('es-GT', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            hour12: false });
+        tablasalida.innerHTML += `
+        <tr>
+            <td>${hora.Placa}</td>
+            <td>${hora.TipoVehiculo}</td>
+            <td>${fecha_hora[0]}</td>
+            <td>${hora_limpia_salida}</td>
+            <td>${hora.Slot}</td>
+            <td>Q${Total.toFixed(2)}</td>
+        </tr>`;
+
+        Vehiculos.splice(posicion, 1); 
+        datostabla();
+        espacios();
+    }else{
+        alert("El proceso de pago se ha cancelado");
+    }
 }
 
-datostabla()
+
+    function espacios() {
+        const tablaespacios = document.getElementById("tablaespacios");
+
+        tablaespacios.innerHTML = "";
+        
+        for (let i = 1; i <= 20; i++) {
+            const vehiculoespacio = Vehiculos.find(carro => Number(carro.Slot) === i);
+            
+            if (vehiculoespacio) {
+                tablaespacios.innerHTML += `
+                    <div class="espacios ocupado">
+                        <b>Slot ${i}</b><br>
+                        <span>${vehiculoespacio.Placa}</span>
+                    </div>`;
+            } else {
+                tablaespacios.innerHTML += `
+                    <div class="espacios libre">
+                        <b>Slot ${i}</b><br>
+                        <span>Disponible</span>
+                    </div>`;
+            }
+        }
+    }
+
+
