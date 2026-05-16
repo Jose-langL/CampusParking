@@ -216,10 +216,10 @@ function importarChartJS(callback) {
                                 label: "Ganancias por Tipo de Vehículo (Q)",
                                 backgroundColor: ["#3498db", "#e74c3c", "#2ecc71", "#f1c40f"],
                                 data: [
-                                    GananciasPorTipo["Carro"], 
-                                    GananciasPorTipo["Moto"], 
-                                    GananciasPorTipo["Bus"], 
-                                    GananciasPorTipo["Camión"]
+                                    GananciasPorTipo["Carro"].toFixed(0), 
+                                    GananciasPorTipo["Moto"].toFixed(0), 
+                                    GananciasPorTipo["Bus"].toFixed(0), 
+                                    GananciasPorTipo["Camión"].toFixed(0)
                                 ] 
                             }
                         ]

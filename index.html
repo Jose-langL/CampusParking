@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Estilos.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./Estilos/Estilos.css">
+    <link rel="stylesheet" href="./Estilos/responsive.css">
+    <title>Sistema Parqueo</title>
 </head>
 
 <body>
     <header class="contenidoheader">
         <div class="logo">
-            <img src="" alt="">
+            <img src="./Multimedia/logo.png" alt="logo">
             <span>Campus <em>Parking</em></span>
         </div>
 
@@ -28,12 +29,12 @@
         <!-- navbar -->
         <div class="contenidonav">
             <nav class="navbar">
-                <ol>
+                <ul>
                     <a href="./dashboard.html"><li>Dashboard</li></a>
                     <a href="./index.html"><li>Operaciones</li></a>
-                </ol>
+                </ul>
 
-                <button class="BtnCerrrar"><a href="./login.html"></a></button>
+                <button class="BtnCerrrar"><a href="./login.html">Cerrar Sesion</a></button>
             </nav>
         </div>
 
@@ -130,7 +131,7 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="tabla-responsive">
             <!-- tabla de vehiculos registrados -->
             <div class="arriba">
                 <div class="contendorblanco" id="contenedor2">
@@ -153,8 +154,9 @@
                     </table>
                 </div>
             </div>
-
+            </div>
             <!-- Tabla de vehiculos de Salida -->
+              <div class="tabla-responsive">
              <div class="arriba">
                 <div class="contendorblanco" id="contenedor2">
                     <h1>Salida vehiculos</h1>
@@ -174,8 +176,9 @@
                     </table>
                 </div>
             </div>
+            </div>
         </div>
     </main>
-    <script src="./main.js"></script>
+    <script src="./JavaScript/main.js"></script>
 </body>
 </html>
