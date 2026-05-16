@@ -10,7 +10,6 @@
     //Funcion extraer datos formulario y localhost
     const formulariodatos = document.getElementById("FormularioIngreso");
     if (formulariodatos) {
-        // Esto SOLO se ejecuta si "formulariodatos" existe en la página actual
         formulariodatos.addEventListener("submit", validarformulario);
     }
         function validarformulario(e) {
@@ -27,6 +26,12 @@
             return;
         }
 
+        const placaDuplicada = Vehiculos.some(vehiculo => vehiculo.Placa === Placa);
+
+        if (placaDuplicada) {
+            alert("Esta placa ya está registrada");
+            return;
+        }
         nuevovehiculo = { Placa, TipoVehiculo, FechaIngreso, Slot };
 
         Vehiculos.push(nuevovehiculo);
