@@ -122,21 +122,6 @@ body {
     color: #fff;
 }
 
-/* Submenús */
-.navbar ul {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: 0.3s ease-in-out;
-    padding-left: 10px;
-}
-
-.navbar li:hover ul {
-    max-height: 200px;
-    opacity: 1;
-    margin-top: 10px;
-}
-
 .BtnCerrrar {
     width: 100%;
     padding: 12px;
@@ -260,3 +245,7 @@ tr:hover { background: #f3f1f1; }
     cursor: pointer;
 }
 
+a{
+    color: rgba(255, 255, 255, 0.80);   
+    text-decoration: none;
+}

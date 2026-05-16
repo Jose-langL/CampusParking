@@ -1,27 +1,4 @@
-//Variable y validacion para el login
-const Usuario = document.getElementById("Usuario");
-const Contra = document.getElementById("Contraseña");
-const BtnLogin = document.getElementById("LoginButton");
-// const BtnCerrar = document.getElementById("Btnsalir")
-const Usuarioprueba = "Admin1";
-const Contraprueba = "admin123";
-
-const validaUsuario = () => {
-    if (!Usuario || !Contra) return;
-    if (Usuario.value == Usuarioprueba && Contra.value == Contraprueba) {
-        window.location.href = "index.html";
-        console.log("Usuario y contraseña correctos");
-    } else if (Usuario.value != Usuarioprueba && Contra.value == Contraprueba) {
-        alert("Usuario incorrecto");
-    } else if (Usuario.value == Usuarioprueba && Contra.value != Contraprueba) {
-        alert("Contraseña incorrecta");
-    } else {
-        alert("Usuario y contraseña incorrectos");
-    }
-}
-
-
-    //Variables Global
+//Variables Global
     let Vehiculos = JSON.parse(localStorage.getItem("Vehiculos")) || [];
     let GananciasPorTipo = JSON.parse(localStorage.getItem("GananciasPorTipo")) || {
         "Carro": 0,
@@ -205,6 +182,27 @@ function importarChartJS(callback) {
     window.addEventListener("DOMContentLoaded", () => {
         datostabla();
         espacios();
+        //Info vehiculos adentro
+        const txtVehiculosDentro = document.getElementById("informacionKPIS1");
+    if (txtVehiculosDentro) {
+       
+        txtVehiculosDentro.innerHTML = `
+        <h4>Vehiculos Dentro</h4>
+        <h2>${Vehiculos.length}</h2>`
+    }
+
+        //Info ganancias totales 
+        const ganancias2= document.getElementById("informacionKPIS3");
+    if (ganancias2) {
+        let totalDinero = GananciasPorTipo["Carro"] + 
+                          GananciasPorTipo["Moto"] + 
+                          GananciasPorTipo["Bus"] + 
+                          GananciasPorTipo["Camión"];
+       
+        ganancias2.innerHTML = `
+        <h4>Ingresos Hoy</h4>
+        <h2>Q${totalDinero.toFixed(2)}</h2>`
+    }
         if (document.getElementById("Grafica")) {
             importarChartJS(() => {
                 let grafica = document.getElementById("Grafica").getContext("2d");
