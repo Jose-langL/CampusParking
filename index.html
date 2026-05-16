@@ -83,12 +83,7 @@
 
                         <div class="formulario">
                             <label>Espacio:</label>
-                            <select id="Espacio">
-                                <option>Zona A</option>
-                                <option>Zona B</option>
-                                <option>Zona C</option>
-                                <option>Zona D</option>
-                            </select>
+                            <input type="number" id="Espacio"  required min="0" max="20"/>
                         </div>
 
                         <div class="formulario">
@@ -120,32 +115,36 @@
                             <tr>
                                 <th>Tipo</th>
                                 <th>Precio x Hora</th>
-                                <th>Tarifa Plana</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Moto</td>
                                 <td>Q10</td>
-                                <td>Q50</td>
                             </tr>
 
                             <tr>
                                 <td>Carro</td>
                                 <td>Q20</td>
-                                <td>Q60</td>
                             </tr>
 
                             <tr>
                                 <td>Camionetas</td>
                                 <td>Q25</td>
-                                <td>Q75</td>
                             </tr>
                         </tbody>
                     </table>
+                    <!-- Tabla de espacios -->
+                    <div class="arriba">
+                        <div class="contendorblanco" id="EspaciosContenedor">
+                            <h1>Espacios</h1>
+                            <div class="columnas" id="tablaespacios">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            
             <!-- tabla de vehiculos registrados -->
             <div class="arriba">
                 <div class="contendorblanco" id="contenedor2">

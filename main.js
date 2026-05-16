@@ -7,6 +7,7 @@ const Usuarioprueba = "Admin1";
 const Contraprueba = "admin123";
 
 const validaUsuario = () => {
+    if (!Usuario || !Contra) return;
     if (Usuario.value == Usuarioprueba && Contra.value == Contraprueba) {
         window.location.href = "index.html";
         console.log("Usuario y contraseña correctos");
@@ -20,20 +21,28 @@ const validaUsuario = () => {
 }
 
 
-    //Variable Global
+    //Variables Global
     let Vehiculos = JSON.parse(localStorage.getItem("Vehiculos")) || [];
+    let GananciasPorTipo = JSON.parse(localStorage.getItem("GananciasPorTipo")) || {
+        "Carro": 0,
+        "Moto": 0,
+        "Bus": 0,
+        "Camión": 0
+    };
 
     //Funcion extraer datos formulario y localhost
     const formulariodatos = document.getElementById("FormularioIngreso");
-    formulariodatos.addEventListener("submit", validarformulario);
-
-    function validarformulario(e) {
+    if (formulariodatos) {
+        // Esto SOLO se ejecuta si "formulariodatos" existe en la página actual
+        formulariodatos.addEventListener("submit", validarformulario);
+    }
+        function validarformulario(e) {
         e.preventDefault();
 
         const Placa = document.getElementById("Placa").value;
         const TipoVehiculo = document.getElementById("TipoVehiculo").value;
         const FechaIngreso = document.getElementById("fechaingreso").value;
-        const Slot = document.getElementById("Espacio").value;
+        const Slot = parseInt(document.getElementById("Espacio").value);
 
         const ocupado = Vehiculos.some(carro => Number(carro.Slot) === Number(Slot));
         if (ocupado) {
@@ -47,6 +56,7 @@ const validaUsuario = () => {
         localStorage.setItem("Vehiculos", JSON.stringify(Vehiculos));
         formulariodatos.reset();
         datostabla();
+        espacios();
     }
 
     //Funcion para poner datos de localhost en tabla
@@ -54,7 +64,7 @@ const validaUsuario = () => {
     const tablasalida = document.getElementById("tabla3")
 
     function datostabla() {
-        Vehiculos
+        if (!tablaentrada) return;
         tablaentrada.innerHTML = "";
         Vehiculos.forEach((datos, indice)=> {
             //Extraer datos de input fecha y hora
@@ -125,6 +135,9 @@ function pagarParqueo(posicion){
     const respuesta = confirm("Bienvenido al proceso de pago, ¿Desea continuar?");
     if(respuesta == true){
         alert("calculando el total a pagar...")
+        //Meter ganancias en el localstore
+        GananciasPorTipo[hora.TipoVehiculo] += Total;
+        localStorage.setItem("GananciasPorTipo", JSON.stringify(GananciasPorTipo));
         const fecha_hora = hora.FechaIngreso.split('T');
         const hora_limpia_salida = horasalida.toLocaleTimeString('es-GT', { 
             hour: '2-digit', 
@@ -141,6 +154,7 @@ function pagarParqueo(posicion){
         </tr>`;
 
         Vehiculos.splice(posicion, 1); 
+        localStorage.setItem("Vehiculos", JSON.stringify(Vehiculos));
         datostabla();
         espacios();
     }else{
@@ -150,27 +164,71 @@ function pagarParqueo(posicion){
 
 
     function espacios() {
-        const tablaespacios = document.getElementById("tablaespacios");
+    const tablaespacios = document.getElementById("tablaespacios");
+    if (!tablaespacios) return;
+    tablaespacios.innerHTML = ""; 
 
-        tablaespacios.innerHTML = "";
-        
-        for (let i = 1; i <= 20; i++) {
-            const vehiculoespacio = Vehiculos.find(carro => Number(carro.Slot) === i);
-            
-            if (vehiculoespacio) {
-                tablaespacios.innerHTML += `
-                    <div class="espacios ocupado">
-                        <b>Slot ${i}</b><br>
-                        <span>${vehiculoespacio.Placa}</span>
-                    </div>`;
-            } else {
-                tablaespacios.innerHTML += `
-                    <div class="espacios libre">
-                        <b>Slot ${i}</b><br>
-                        <span>Disponible</span>
-                    </div>`;
+    for (let i = 1; i <= 20; i++) {
+        let carroEncontrado = null;
+        for (let j = 0; j < Vehiculos.length; j++) {
+            if (Number(Vehiculos[j].Slot) === i) {
+                carroEncontrado = Vehiculos[j]; 
             }
         }
+
+        if (carroEncontrado) {
+            tablaespacios.innerHTML += `
+                <div class="espacios ocupado">
+                    <b>Slot ${i}</b><br>
+                    <span>${carroEncontrado.Placa}</span>
+                </div>`;
+        } else {
+            tablaespacios.innerHTML += `
+                <div class="espacios libre">
+                    <b>Slot ${i}</b><br>
+                    <span>Disponible</span>
+                </div>`;
+        }
     }
+}
 
 
+//GRÁFICAS
+function importarChartJS(callback) {
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/chart.js";
+    script.onload = () => {
+        callback();
+    };
+    document.head.appendChild(script);
+}
+    window.addEventListener("DOMContentLoaded", () => {
+        datostabla();
+        espacios();
+        if (document.getElementById("Grafica")) {
+            importarChartJS(() => {
+                let grafica = document.getElementById("Grafica").getContext("2d");
+                
+                var chart = new Chart(grafica, {
+                    type: "bar",
+                    data: {
+                        labels: ["Carro", "Moto", "Bus", "Camión"],
+                        datasets: [ 
+                            {
+                                label: "Ganancias por Tipo de Vehículo (Q)",
+                                backgroundColor: ["#3498db", "#e74c3c", "#2ecc71", "#f1c40f"],
+                                data: [
+                                    GananciasPorTipo["Carro"], 
+                                    GananciasPorTipo["Moto"], 
+                                    GananciasPorTipo["Bus"], 
+                                    GananciasPorTipo["Camión"]
+                                ] 
+                            }
+                        ]
+                    }
+                });
+            });
+        }
+    });
+
+    

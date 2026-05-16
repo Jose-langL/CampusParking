@@ -220,7 +220,16 @@ tr:hover { background: #f3f1f1; }
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    background: #e8f5e9;
+    background: #54d15ec0;
+}
+
+.ocupado {
+    border: 2px solid rgb(168, 0, 0);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    background:rgba(228, 94, 94, 0.664) ;
+   
 }
 
 /********Botones de tabla (Eliminar, Modificar y Pagar)*********/
@@ -250,3 +259,4 @@ tr:hover { background: #f3f1f1; }
     border-radius: 6px;
     cursor: pointer;
 }
+
