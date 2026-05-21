@@ -1,184 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Estilos/Estilos.css">
-    <link rel="stylesheet" href="./Estilos/responsive.css">
-    <title>Sistema Parqueo</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./Estilos/Estilos.css">
+   <link rel="stylesheet" href="./Estilos/responsive.css">
+   <title>Sistema Parqueo</title>
 </head>
 
+
 <body>
-    <header class="contenidoheader">
-        <div class="logo">
-            <img src="./Multimedia/logo.png" alt="logo">
-            <span>Campus <em>Parking</em></span>
-        </div>
+   <header class="contenidoheader">
+       <div class="logo">
+           <img src="./Multimedia/logo.png" alt="logo">
+           <span>Campus <em>Parking</em></span>
+       </div>
 
-        <div class="titulo">
-            <h1>Sistema Integrado de Parqueo</h1>
-        </div>
 
-        <div></div>
-    </header>
+       <div class="titulo">
+           <h1>Sistema Integrado de Parqueo</h1>
+       </div>
 
-    <!-- Contenido main -->
-    <main class="contenidomain">
 
-        <!-- navbar -->
-        <div class="contenidonav">
-            <nav class="navbar">
-                <ul>
-                    <a href="./dashboard.html"><li>Dashboard</li></a>
-                    <a href="./index.html"><li>Operaciones</li></a>
-                </ul>
+       <div></div>
+   </header>
 
-                <button class="BtnCerrrar"><a href="./login.html">Cerrar Sesion</a></button>
-            </nav>
-        </div>
 
-        <div class="contenedorMain">
+   <!-- Contenido main -->
+   <main class="contenidomain">
+
+
+       <!-- navbar -->
+       <div class="contenidonav">
+           <nav class="navbar">
+               <ul>
+                   <a href="./dashboard.html"><li>Dashboard</li></a>
+                   <a href="./index.html"><li>Operaciones</li></a>
+               </ul>
+
+
+               <button class="BtnCerrrar"><a href="./login.html">Cerrar Sesion</a></button>
+           </nav>
+       </div>
+
+
+       <div class="contenedorMain">
+           <div class="arriba">
+
+
+               <!-- formulario de ingreso de vehiculo -->
+               <div class="contendorblanco">
+                   <form action="" id="FormularioIngreso">
+                       <h1>Ingreso de Vehiculo</h1>
+
+
+                       <div class="formulario">
+                           <label>Placa:</label>
+                           <input type="text" id="Placa" maxlength="7" placeholder="Ingresa una placa (Ej: P123SAT)" required/>
+                       </div>
+
+
+                       <div class="formulario">
+                           <label>Propietario:</label>
+                           <input type="text" placeholder="Ingresa el nombre del dueño" required/>
+                       </div>
+
+
+                       <div class="formulario">
+                           <label>Teléfono:</label>
+                           <input type="text" maxlength="8" placeholder="Ingresa el número del dueño" required/>
+                       </div>
+
+
+                       <div class="formulario">
+                           <label>Tipo de Vehículo:</label>
+                           <select id="TipoVehiculo">
+                               <option>Carro</option>
+                               <option>Moto</option>
+                               <option>Bus</option>
+                               <option>Camión</option>
+                           </select>
+                       </div>
+
+
+                       <div class="formulario">
+                           <label>Fecha de ingreso:</label>
+                           <input type="datetime-local" id="fechaingreso" max="2026-05-31T23:59" min="2024-06-01T00:00"required/>
+                       </div>
+
+
+                       <div class="formulario">
+                           <label>Espacio:</label>
+                           <input type="number" id="Espacio"  placeholder="Ingresa un lugar del     1-20" required min="0" max="20"/>
+                       </div>
+
+
+                       <div class="formulario">
+                           <label>Tarifa Hora:</label>
+                           <select id="TarifaHora">
+                               <option value="10">Q10</option>
+                               <option value="20">Q20</option>
+                               <option value="25">Q25</option>
+                           </select>
+                       </div>
+
+
+                       <button class="btn-registrar" id="Btnregistrar"> Registrar Vehículo</button>
+                   </form>
+               </div>
+
+
+               <!-- Informacion de tarifas -->
+               <div class="contendorblanco" id="contendortarifa">
+                   <div class="tabla-responsive">
+                   <h1>Horarios y Tarifass</h1>
+                   <table>
+                       <thead>
+                           <tr>
+                               <th>Tipo</th>
+                               <th>Precio x Hora</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td>Moto</td>
+                               <td>Q10</td>
+                           </tr>
+
+
+                           <tr>
+                               <td>Carro</td>
+                               <td>Q20</td>
+                           </tr>
+
+
+                           <tr>
+                               <td>Camionetas</td>
+                               <td>Q25</td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+                   <!-- Tabla de espacios -->
+                   <div class="arriba">
+                       <div class="contendorblanco" id="EspaciosContenedor">
+                           <h1>Espacios</h1>
+                           <div class="columnas" id="tablaespacios">
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="tabla-responsive">
+           <!-- tabla de vehiculos registrados -->
+           <div class="arriba">
+               <div class="contendorblanco" id="contenedor2">
+                   <h1>Entrada vehiculos</h1>
+                   <table id="tabla1">
+                       <thead>
+                           <tr>
+                               <th>Placa</th>
+                               <th>Tipo de Vehiculo</th>
+                               <th>Fecha</th>
+                               <th>Hora Entrada</th>
+                               <th>Slot</th>
+                               <th>Eliminar</th>
+                               <th>Modificar</th>
+                               <th>Pagar</th>
+                           </tr>
+                       </thead>
+                       <tbody id="tabla2">
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+           </div>
+           <!-- Tabla de vehiculos de Salida -->
+             <div class="tabla-responsive">
             <div class="arriba">
-
-                <!-- formulario de ingreso de vehiculo -->
-                <div class="contendorblanco">
-                    <form action="" id="FormularioIngreso">
-                        <h1>Ingreso de Vehiculo</h1>
-
-                        <div class="formulario">
-                            <label>Placa:</label>
-                            <input type="text" id="Placa" maxlength="7" placeholder="Ingresa una placa (Ej: P123SAT)" required/>
-                        </div>
-
-                        <div class="formulario">
-                            <label>Propietario:</label>
-                            <input type="text" placeholder="Ingresa el nombre del dueño" required/>
-                        </div>
-
-                        <div class="formulario">
-                            <label>Teléfono:</label>
-                            <input type="text" maxlength="8" placeholder="Ingresa el número del dueño" required/>
-                        </div>
-
-                        <div class="formulario">
-                            <label>Tipo de Vehículo:</label>
-                            <select id="TipoVehiculo">
-                                <option>Carro</option>
-                                <option>Moto</option>
-                                <option>Bus</option>
-                                <option>Camión</option>
-                            </select>
-                        </div>
-
-                        <div class="formulario">
-                            <label>Fecha de ingreso:</label>
-                            <input type="datetime-local" id="fechaingreso"  required/>
-                        </div>
-
-                        <div class="formulario">
-                            <label>Espacio:</label>
-                            <input type="number" id="Espacio"  placeholder="Ingresa un lugar del     1-20" required min="0" max="20"/>
-                        </div>
-
-                        <div class="formulario">
-                            <label>Tarifa Hora:</label>
-                            <select id="TarifaHora">
-                                <option value="10">Q10</option>
-                                <option value="20">Q20</option>
-                                <option value="25">Q25</option>
-                            </select>
-                        </div>
-
-                        <button class="btn-registrar" id="Btnregistrar"> Registrar Vehículo</button>
-                    </form>
-                </div>
-
-                <!-- Informacion de tarifas -->
-                <div class="contendorblanco" id="contendortarifa">
-                    <h1>Horarios y Tarifass</h1>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Tipo</th>
-                                <th>Precio x Hora</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Moto</td>
-                                <td>Q10</td>
-                            </tr>
-
-                            <tr>
-                                <td>Carro</td>
-                                <td>Q20</td>
-                            </tr>
-
-                            <tr>
-                                <td>Camionetas</td>
-                                <td>Q25</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <!-- Tabla de espacios -->
-                    <div class="arriba">
-                        <div class="contendorblanco" id="EspaciosContenedor">
-                            <h1>Espacios</h1>
-                            <div class="columnas" id="tablaespacios">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tabla-responsive">
-            <!-- tabla de vehiculos registrados -->
-            <div class="arriba">
-                <div class="contendorblanco" id="contenedor2">
-                    <h1>Entrada vehiculos</h1>
-                    <table id="tabla1">
-                        <thead>
-                            <tr>
-                                <th>Placa</th>
-                                <th>Tipo de Vehiculo</th>
-                                <th>Fecha</th>
-                                <th>Hora Entrada</th>
-                                <th>Slot</th>
-                                <th>Eliminar</th>
-                                <th>Modificar</th>
-                                <th>Pagar</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla2">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            </div>
-            <!-- Tabla de vehiculos de Salida -->
-              <div class="tabla-responsive">
-             <div class="arriba">
-                <div class="contendorblanco" id="contenedor2">
-                    <h1>Salida vehiculos</h1>
-                    <table id="tabla1">
-                        <thead>
-                            <tr>
-                                <th>Placa</th>
-                                <th>Tipo de Vehiculo</th>
-                                <th>Fecha</th>
-                                <th>Hora Salida</th>
-                                <th>Slot</th>
-                                <th>Pagar</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla3">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            </div>
-        </div>
-    </main>
-    <script src="./JavaScript/main.js"></script>
+               <div class="contendorblanco" id="contenedor2">
+                   <h1>Salida vehiculos</h1>
+                   <table id="tabla1">
+                       <thead>
+                           <tr>
+                               <th>Placa</th>
+                               <th>Tipo de Vehiculo</th>
+                               <th>Fecha</th>
+                               <th>Hora Salida</th>
+                               <th>Slot</th>
+                               <th>Pagar</th>
+                           </tr>
+                       </thead>
+                       <tbody id="tabla3">
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+           </div>
+       </div>
+   </main>
+   <script src="./JavaScript/main.js"></script>
 </body>
 </html>
+
