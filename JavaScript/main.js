@@ -120,7 +120,7 @@ function ModificarVehiculo(posicion) {
 
 
 }
-
+1
 
 //Funcion para Pagar el parqueo
 function pagarParqueo(posicion) {
@@ -139,7 +139,7 @@ function pagarParqueo(posicion) {
    const respuesta = confirm("Bienvenido al proceso de pago, ¿Desea continuar?");
    if (respuesta == true) {
        alert("calculando el total a pagar...")
-       //Meter ganancias en el localstore
+       //Meter ganancias en el loca1lstore
        GananciasPorTipo[hora.TipoVehiculo] += Total;
        localStorage.setItem("GananciasPorTipo", JSON.stringify(GananciasPorTipo));
        const fecha_hora = hora.FechaIngreso.split('T');
@@ -162,7 +162,6 @@ function pagarParqueo(posicion) {
 
        HistorialVehiculos.push(registroHistorial);
        localStorage.setItem("HistorialVehiculos", JSON.stringify(HistorialVehiculos));
-
 
        tablasalida.innerHTML += `
        <tr>
@@ -254,17 +253,26 @@ function importarChartJS(callback) {
 window.addEventListener("DOMContentLoaded", () => {
    datostabla();
    espacios();
-   //Info vehiculos adentro
+   //Info vehiculos Parqueados
    const txtVehiculosDentro = document.getElementById("informacionKPIS1");
    if (txtVehiculosDentro) {
 
 
        txtVehiculosDentro.innerHTML = `
-       <h4>Vehiculos Dentro</h4>
+       <h4>Vehiculos Parqueados</h4>
        <h2>${Vehiculos.length}</h2>`
    }
 
 
+   //Tiempo Total de los servicios
+   const tiempototal = document.getElementById("informacionKPIS2");
+   if (tiempototal) {
+       tiempototal.innerHTML = `
+       <h4>Vehiculos a los cuales les prestamos el servicio</h4>
+       <h2>${HistorialVehiculos.length}</h2>
+       `
+   }
+   //En vehiculos Parqueados hay 0 porque cuando se da a pagar se eliminan ya que salieron entonces queda en 0  
    //Info ganancias totales
    const ganancias2 = document.getElementById("informacionKPIS3");
    if (ganancias2) {
@@ -273,9 +281,13 @@ window.addEventListener("DOMContentLoaded", () => {
            GananciasPorTipo["Bus"] +
            GananciasPorTipo["Camión"];
 
-
        ganancias2.innerHTML = `
        <h4>Ingresos Hoy</h4>
+       <h2>Q${totalDinero.toFixed(2)}</h2>`
+
+    const gananciasfechas = document.getElementById("informacionKPIS4")
+    gananciasfechas.innerHTML = `
+       <h4>Ingresos Fechas</h4>
        <h2>Q${totalDinero.toFixed(2)}</h2>`
    }
    if (document.getElementById("Grafica")) {
@@ -284,18 +296,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
            var chart = new Chart(grafica, {
-               type: "bar",
+               type: "pie",
                data: {
                    labels: ["Carro", "Moto", "Bus", "Camión"],
                    datasets: [
                        {
                            label: "Ganancias por Tipo de Vehículo (Q)",
-                           backgroundColor: ["#3498db", "#e74c3c", "#2ecc71", "#f1c40f"],
+                           backgroundColor: ["#3498db", "#e74c3c", "#00FF00", "#f1c40f"],
                            data: [
                                GananciasPorTipo["Carro"].toFixed(0),
                                GananciasPorTipo["Moto"].toFixed(0),
                                GananciasPorTipo["Bus"].toFixed(0),
-                               GananciasPorTipo["Camión"].toFixed(0)
+                               GananciasPorTipo["Camión"].toFixed(0),
                            ]
                        }
                    ]
