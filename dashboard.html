@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="./Estilos/responsive.css">
     <title>Dashboardt</title>
 </head>
+
 <body>
-      <header class="contenidoheader">
+    <header class="contenidoheader">
         <div class="logo">
             <img src="./Multimedia/logo.png" alt="logo">
             <span>Campus <em>Parking</em></span>
@@ -28,8 +30,12 @@
         <div class="contenidonav">
             <nav class="navbar">
                 <ul>
-                    <a href="./dashboard.html"><li>Dashboard</li></a>
-                    <a href="./index.html"><li>Operaciones</li></a>
+                    <a href="./dashboard.html">
+                        <li>Dashboard</li>
+                    </a>
+                    <a href="./index.html">
+                        <li>Operaciones</li>
+                    </a>
                 </ul>
 
                 <button class="BtnCerrrar"><a href="./login.html">Cerrar Sesion</a></button>
@@ -41,25 +47,28 @@
 
                 <div class="contendorblanco" id="informacionKPIS1">
                 </div>
-                
+
                 <div class="contendorblanco" id="informacionKPIS2">
                 </div>
 
                 <div class="contendorblanco" id="informacionKPIS3">
-                 </div>
+                </div>
 
-                 <div class="contendorblanco" id="informacionKPIS4">
+                <div class="contendorblanco" id="informacionKPIS4">
                     <input type="date" id="fecha">
                 </div>
             </div>
             <div class="arriba">
-                 <div class="contendorblanco" id="ETDCIngresos">
+                <div class="contendorblanco" id="ETDCIngresos">
                     <h1>Estadisiticas</h1>
-                    <canvas id="Grafica" width="450px" height="120px"></canvas>
+                <div class="GraficaContenedor">
+                    <canvas id="Grafica"></canvas>
+                </div> 
                 </div>
             </div>
         </div>
     </main>
     <script src="./JavaScript/main.js"></script>
 </body>
+
 </html>

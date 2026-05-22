@@ -391,3 +391,14 @@ tr:hover td { background: #f5f8f8; }
 .btneliminar:hover,
 .btnmodificar:hover,
 .BtnPagar:hover { opacity: 0.85; }
+
+/* ============================================
+            CANVAS
+   ============================================ */
+
+.Graficascontendor{
+    position: relative; 
+    width: 100%; 
+    max-width: 400px; 
+    margin: 0 auto;
+}
